@@ -107,10 +107,7 @@ export default function App() {
     let timeFixed = Math.floor(time)
 
 
-    // if (new Date().getSeconds() - secTemp > 2 || secTemp - new Date().getSeconds() > 2 || gsap.ticker.deltaRatio() < 1) {
-    //   clockRef.current = time + 3
-    //   temp = time + 3
-    // }
+
 
     if (gsap.ticker.deltaRatio() < 1 || secTemp === undefined || hourTemp === undefined || minTemp === undefined) {
       for (let i = 1; i <= 60; i++) {
@@ -123,9 +120,7 @@ export default function App() {
         }
       }
 
-      // for (let i = 1; i <= 12; i++) {
-      //   gsap.to(`#hN${i}`, { fill: "#f5f5f5", ease: "none", duration: 0.01 })
-      // }
+
       clockRef.current = time + 1
       temp = time + 1
       gsap.set("#second-d", {
@@ -315,6 +310,30 @@ export default function App() {
               }
             })
           }
+          if (new Date().getHours() === 0) {
+            gsap.to(`#hN12`, {
+              stroke: "#ff5d00", strokeWidth: 3, duration: 0.3, ease: "none",
+              onStart: function () {
+                HlineRef.current = "#" + this._pt?.t?.id
+              }
+            })
+          }
+          else if (new Date().getHours() <= 12 && new Date().getHours() !== 0) {
+            gsap.to(`#hN${new Date().getHours() - 1}`, {
+              stroke: "#ff5d00", strokeWidth: 3, duration: 0.3, ease: "none",
+              onStart: function () {
+                HlineRef.current = "#" + this._pt?.t?.id
+              }
+            })
+          }
+          else if (new Date().getHours() > 12 && new Date().getHours() !== 0) {
+            gsap.to(`#hN${new Date().getHours() - 13}`, {
+              stroke: "#ff5d00", strokeWidth: 3, duration: 0.3, ease: "none",
+              onStart: function () {
+                HlineRef.current = "#" + this._pt?.t?.id
+              }
+            })
+          }
         }
         temp++
       }
@@ -325,7 +344,7 @@ export default function App() {
   }
 
 
-  console.log(hNRef.current)
+
 
 
   return (
@@ -339,30 +358,31 @@ export default function App() {
         <circle id="clock-circle" cx={width / 2} cy={height / 2} r={(width / 2) - 6} stroke="#8338ec" strokeWidth="6" />
         <circle id="clock-center" cx={width / 2} cy={height / 2} r="1" stroke="orange" strokeWidth="1" />
 
-
-        <text className="numbers" id="hN12" x="44%" y="15%">12</text>
-        <text className="numbers" id="hN1" x="65%" y="20%" >1</text>
-        <text className="numbers" id="hN2" x="78%" y="33.5%" >2</text>
-        <text className="numbers" id="hN3" x="83%" y="52%" >3</text>
-        <text className="numbers" id="hN4" x="78%" y="70%" >4</text>
-        <text className="numbers" id="hN5" x="65%" y="83%" >5</text>
-        <text className="numbers" id="hN6" x="47%" y="87.5%" >6</text>
-        <text className="numbers" id="hN7" x="28%" y="83%" >7</text>
-        <text className="numbers" id="hN8" x="15%" y="70%" >8</text>
-        <text className="numbers" id="hN9" x="10%" y="51%" >9</text>
-        <text className="numbers" id="hN10" x="13%" y="33.5%" >10</text>
-        <text className="numbers" id="hN11" x="26%" y="20%" >11</text>
-
-
-
+        <g>
+          <text className="numbers" id="hN12" x="44%" y="15%">12</text>
+          <text className="numbers" id="hN1" x="65%" y="20%" >1</text>
+          <text className="numbers" id="hN2" x="78%" y="33.5%" >2</text>
+          <text className="numbers" id="hN3" x="83%" y="52%" >3</text>
+          <text className="numbers" id="hN4" x="78%" y="70%" >4</text>
+          <text className="numbers" id="hN5" x="65%" y="83%" >5</text>
+          <text className="numbers" id="hN6" x="47%" y="87.5%" >6</text>
+          <text className="numbers" id="hN7" x="28%" y="83%" >7</text>
+          <text className="numbers" id="hN8" x="15%" y="70%" >8</text>
+          <text className="numbers" id="hN9" x="10%" y="51%" >9</text>
+          <text className="numbers" id="hN10" x="13%" y="33.5%" >10</text>
+          <text className="numbers" id="hN11" x="26%" y="20%" >11</text>
+        </g>
 
 
 
 
 
 
-        <path id="hour-hand" d={`M${width / 2},${height / 2} v-${(width / 2) - 40}`} stroke="#ff5d00" strokeWidth={4} />
+
+
+
         <path id="minute-hand" d={`M${width / 2},${height / 2} v-${(width / 2) - 30}`} stroke="#00ff00" strokeWidth={3} />
+        <path id="hour-hand" d={`M${width / 2},${height / 2} v-${(width / 2) - 40}`} stroke="#ff5d00" strokeWidth={4} />
         <path id="second-hand" d={`M${width / 2},${height / 2} v-${(width / 2) - 10}`} stroke="#3a86ff" strokeWidth={2} />
 
 
