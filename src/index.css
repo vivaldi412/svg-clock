@@ -20,7 +20,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
-.secondLines {
+.parent-svg {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .numbers {
   font-family: "Oxanium", sans-serif;

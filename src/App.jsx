@@ -37,7 +37,7 @@ export default function App() {
   function printSvg() {
     setPSvg(
       <svg xmlns="http://www.w3.org/2000/svg" width={width + 9} height={height + 9} viewBox={`-3 -3 ${width + 6} ${height + 6}`}
-        fill="none"
+        fill="none" className="parent-svg"
       >
         <path d="M0,0H300V300H0Z" stroke="black" strokeWidth="6" />
 
