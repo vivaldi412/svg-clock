@@ -330,40 +330,15 @@ export default function App() {
 
   return (
     <div ref={container}>
-      {/* <button onClick={arman}>go</button> */}
-      {/* <button onClick={arman2}>run</button> */}
-      {/* <button onClick={arman3}>res</button> */}
-      {/* {pSvg} */}
+
       <svg xmlns="http://www.w3.org/2000/svg" width={width + 9} height={height + 9} viewBox={`-3 -3 ${width + 6} ${height + 6}`}
         fill="black" className="parent-svg"
       >
-
-
         {/* <path id="wrapper" d="M0,0H300V300H0Z" stroke="#2a9d8f" strokeWidth="6" /> */}
-
-
-
-
-
 
         <circle id="clock-circle" cx={width / 2} cy={height / 2} r={(width / 2) - 6} stroke="#8338ec" strokeWidth="6" />
         <circle id="clock-center" cx={width / 2} cy={height / 2} r="1" stroke="orange" strokeWidth="1" />
 
-
-
-        <path id="hour-hand" d="M150,150 v-90" stroke="#ff5d00" strokeWidth={4} />
-        <path id="minute-hand" d="M150,150 v-120" stroke="#00ff00" strokeWidth={3} />
-        <path id="second-hand" d="M150,150 v-140" stroke="#3a86ff" strokeWidth={2} />
-
-        <circle id="clock-center-circle" cx={width / 2} cy={height / 2} r="30" fill="black" stroke="#8338ec" strokeWidth="3" />
-
-        <g transform="translate(2.5 -1.5)">
-          <text className="digital-clock" id="second-d" x="160" y="156" >{new Date().getSeconds()}</text>
-          <text className="digital-clock" x="156" y="155.7">:</text>
-          <text className="digital-clock" id="minute-d" x="141" y="156" >{new Date().getMinutes()}</text>
-          <text className="digital-clock" x="136.5" y="155.7">:</text>
-          <text className="digital-clock" id="hour-d" x="122" y="156" >{new Date().getHours()}</text>
-        </g>
 
         <text className="numbers" id="hN12" x="44%" y="15%">12</text>
         <text className="numbers" id="hN1" x="65%" y="20%" >1</text>
@@ -382,6 +357,28 @@ export default function App() {
 
 
 
+
+
+
+
+        <path id="hour-hand" d={`M${width / 2},${height / 2} v-${(width / 2) - 40}`} stroke="#ff5d00" strokeWidth={4} />
+        <path id="minute-hand" d={`M${width / 2},${height / 2} v-${(width / 2) - 30}`} stroke="#00ff00" strokeWidth={3} />
+        <path id="second-hand" d={`M${width / 2},${height / 2} v-${(width / 2) - 10}`} stroke="#3a86ff" strokeWidth={2} />
+
+
+
+
+        <circle id="clock-center-circle" cx={width / 2} cy={height / 2} r="30" fill="black" stroke="#8338ec" strokeWidth="3" />
+
+
+
+        <g transform="translate(2.5 -1.5)">
+          <text className="digital-clock" id="second-d" x="160" y="156" >{new Date().getSeconds()}</text>
+          <text className="digital-clock" x="156" y="155.7">:</text>
+          <text className="digital-clock" id="minute-d" x="141" y="156" >{new Date().getMinutes()}</text>
+          <text className="digital-clock" x="136.5" y="155.7">:</text>
+          <text className="digital-clock" id="hour-d" x="122" y="156" >{new Date().getHours()}</text>
+        </g>
 
         {/* <circle cx={width / 2} cy={height / 2} r={(width / 2) - 38} stroke="orange" strokeWidth="1" fill="none" /> */}
         {/* <line x1="150" y1="0" x2="150" y2="300" stroke="black" strokeWidth="4" /> */}
