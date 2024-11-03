@@ -34,51 +34,7 @@ export default function App() {
   const width = 300
   const height = 300
 
-  function printSvg() {
-    setPSvg(
-      <svg xmlns="http://www.w3.org/2000/svg" width={width + 9} height={height + 9} viewBox={`-3 -3 ${width + 6} ${height + 6}`}
-        fill="none" className="parent-svg"
-      >
-        <path d="M0,0H300V300H0Z" stroke="black" strokeWidth="6" />
 
-        <circle id="clock-circle" cx={width / 2} cy={height / 2} r={(width / 2) - 6} stroke="orange" strokeWidth="4" />
-        <circle id="clock-center" cx={width / 2} cy={height / 2} r="1" stroke="orange" strokeWidth="1" />
-
-
-
-        <path id="hour-hand" d="M150,150 v-150" opacity="1" stroke="lightGreen" strokeWidth={2} />
-        <path id="minute-hand" d="M150,150 v-150" opacity="1" stroke="red" strokeWidth={2} />
-        <path id="second-hand" d="m150,150 v-150" opacity="1" stroke="black" strokeWidth={2} />
-
-        <circle id="clock-center-circle" cx={width / 2} cy={height / 2} r="30" fill="white" stroke="orange" strokeWidth="1" />
-
-        <text className="digital-clock" id="second-d" x="150" y="150" >{0}</text>
-
-        <text className="numbers" x="46%" y="10%">12</text>
-        <text className="numbers" x="68%" y="15%" >1</text>
-        <text className="numbers" x="83%" y="30.5%" >2</text>
-        <text className="numbers" x="88.5%" y="51%" >3</text>
-        <text className="numbers" x="83%" y="71%" >4</text>
-        <text className="numbers" x="68%" y="86.5%" >5</text>
-        <text className="numbers" x="47.5%" y="92%" >6</text>
-        <text className="numbers" x="27%" y="86%" >7</text>
-        <text className="numbers" x="12%" y="71%" >8</text>
-        <text className="numbers" x="6%" y="50.5%" >9</text>
-        <text className="numbers" x="10%" y="30.5%" >10</text>
-        <text className="numbers" x="25.5%" y="15%" >11</text>
-
-
-
-
-
-
-        {/* <circle cx={width / 2} cy={height / 2} r={(width / 2) - 24} stroke="orange" strokeWidth="1" /> */}
-        {/* <line x1="150" y1="0" x2="150" y2="300" stroke="black" strokeWidth="4" /> */}
-        {/* <line x1="0" y1="150" x2="300" y2="150" stroke="black" strokeWidth="4" /> */}
-        {baseLineRef.current}
-      </svg>
-    )
-  }
 
 
   baseLine()
@@ -285,19 +241,16 @@ export default function App() {
 
 
 
-        if (new Date().getSeconds() > secTemp) {
+        if (new Date().getSeconds() !== secTemp) {
 
           gsap.to(SlineRef.current, { strokeWidth: "0.1", duration: 0.01 })
 
           gsap.to("#second-hand", {
             rotation: "+=6", transformOrigin: "bottom", ease: "bounce.out",
           })
-          if (new Date().getSeconds() === 59) {
-            secTemp = -1
-          }
-          else if (new Date().getSeconds() !== 59) {
-            secTemp = new Date().getSeconds()
-          }
+
+          secTemp = new Date().getSeconds()
+
           if (new Date().getSeconds() % 5 !== 0) {
             gsap.to(`#Sline${new Date().getSeconds() - 1}`, {
               strokeWidth: "2", duration: 0.01, ease: "none",
@@ -308,17 +261,13 @@ export default function App() {
           }
         }
 
-        if (new Date().getMinutes() > minTemp) {
+        if (new Date().getMinutes() !== minTemp) {
           gsap.to(MlineRef.current, { strokeWidth: "0", duration: 0.01 })
 
           gsap.to("#minute-hand", { rotation: "+=6", transformOrigin: "bottom" })
-          // console.log("min>")
-          if (new Date().getMinutes() === 59) {
-            minTemp = -1
-          }
-          else if (new Date().getMinutes() !== 59) {
-            minTemp = new Date().getMinutes()
-          }
+
+          minTemp = new Date().getMinutes()
+
           if (new Date().getMinutes() % 5 !== 0) {
             gsap.to(`#Mline${new Date().getMinutes() - 1}`, {
               strokeWidth: "1.5", stroke: "#00ff00", duration: 0.01, ease: "none",
@@ -329,7 +278,7 @@ export default function App() {
           }
         }
 
-        if (new Date().getHours() > hourTemp) {
+        if (new Date().getHours() !== hourTemp) {
           gsap.to(`${hNRef.current}`, {
             fill: "#f5f5f5", duration: 0.01, ease: "none",
           })
@@ -337,12 +286,10 @@ export default function App() {
             stroke: "#f5f5f5", strokeWidth: 0.4, duration: 0.01, ease: "none",
           })
           gsap.to("#hour-hand", { rotation: "+=30", transformOrigin: "bottom" })
-          if (new Date().getHours() === 12) {
-            hourTemp = -1
-          }
-          else if (new Date().getHours() !== 12) {
-            hourTemp = new Date().getHours()
-          }
+
+
+          hourTemp = new Date().getHours()
+
 
           if (new Date().getHours() === 0) {
             gsap.to(`#Hline12`, {
@@ -388,7 +335,7 @@ export default function App() {
       {/* <button onClick={arman3}>res</button> */}
       {/* {pSvg} */}
       <svg xmlns="http://www.w3.org/2000/svg" width={width + 9} height={height + 9} viewBox={`-3 -3 ${width + 6} ${height + 6}`}
-        fill="black"
+        fill="black" className="parent-svg"
       >
 
 
